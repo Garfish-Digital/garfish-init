@@ -1,0 +1,101 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Your Brand - Professional Web Development", description = "About your business and the professional services we provide." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    .garfish-logo {
+      font-family: "Courier Prime", "Courier New", Courier, monospace;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-white font-sans">
+  <header class="bg-blue-600">
+    <nav class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-white">Your Brand Name or Logo</h1>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex space-x-6">
+          <a href="#about" class="text-white hover:text-gray-200 transition duration-300">About</a>
+          <a href="#services" class="text-white hover:text-gray-200 transition duration-300">Services</a>
+          <a href="#contact" class="text-white hover:text-gray-200 transition duration-300">Contact</a>
+        </div>
+        
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Mobile Navigation Menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="#about" class="text-white hover:text-gray-200 py-2 transition duration-300">About</a>
+          <a href="#services" class="text-white hover:text-gray-200 py-2 transition duration-300">Services</a>
+          <a href="#contact" class="text-white hover:text-gray-200 py-2 transition duration-300">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="bg-blue-600 text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p>&copy; 2024 Your Brand. All rights reserved.</p>
+      <p class="text-blue-100 mt-2">Built just for you by <span class="garfish-logo">Garfish Digital</span></p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+      }
+    });
+  </script>
+</body>
+  

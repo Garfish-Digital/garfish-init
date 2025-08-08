@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'variables';
+@import 'textures';
+
+// Reset and base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: $secondary-cream;
+  background: $primary-midnight-black;
+  @include paper-grain();
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+// Typography hierarchy
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: $spacing-lg;
+  color: $secondary-cream;
+}
+
+h1 {
+  font-size: 3.5rem;
+  letter-spacing: -0.02em;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-size: 2rem;
+  
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 1.5rem;
+  }
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+}
+
+p {
+  margin-bottom: $spacing-md;
+  color: $secondary-cream;
+  opacity: 0.9;
+}
+
+// Links
+a {
+  color: $accent-gold-ink;
+  text-decoration: none;
+  transition: color $transition-medium;
+  
+  &:hover {
+    color: lighten($accent-gold-ink, 10%);
+    text-decoration: underline;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: $spacing-md $spacing-xl;
+  font-family: $font-sans;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: all $transition-medium;
+  position: relative;
+  overflow: hidden;
+  
+  &.btn-primary {
+    background: $primary-deep-velvet;
+    color: $secondary-cream;
+    @include velvet-overlay(0.05);
+    
+    &:hover {
+      background: lighten($primary-deep-velvet, 5%);
+      transform: translateY(-2px);
+      box-shadow: $shadow-velvet;
+    }
+  }
+  
+  &.btn-secondary {
+    background: transparent;
+    color: $accent-gold-ink;
+    border: 2px solid $accent-gold-ink;
+    
+    &:hover {
+      background: $accent-gold-ink;
+      color: $primary-midnight-black;
+      @include gold-shimmer();
+    }
+  }
+  
+  &.btn-ghost {
+    background: transparent;
+    color: $secondary-blush-rose;
+    border: 1px solid rgba($secondary-blush-rose, 0.3);
+    
+    &:hover {
+      background: rgba($secondary-blush-rose, 0.1);
+      border-color: $secondary-blush-rose;
+    }
+  }
+}
+
+// Sections
+.section {
+  padding: $spacing-xxxl 0;
+  position: relative;
+  
+}
+
+// Container
+.container {
+  max-width: $breakpoint-wide;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0 $spacing-md;
+  }
+}
